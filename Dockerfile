@@ -67,6 +67,9 @@ RUN chown nextjs:nodejs .next
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
+# THIS IS THE ADDED LINE for fixing the 'permission denied' error:
+RUN chown -R nextjs:nodejs /app
+
 USER nextjs
 
 EXPOSE 3000
