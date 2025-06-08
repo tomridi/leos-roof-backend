@@ -23,6 +23,15 @@ RUN pnpm i --frozen-lockfile
 # Rebuild the source code only when needed
 FROM base AS builder
 WORKDIR /app
+
+# Add users and groups for consistency in the builder stage
+# (This ensures 'nextjs' user exists if any build scripts rely on it)
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+# NEW: Install pnpm in the builder stage as well, as it's a new stage
+RUN npm install -g pnpm
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
@@ -32,7 +41,6 @@ COPY . .
 # ENV NEXT_TELEMETRY_DISABLED 1
 
 # Run the build command using pnpm directly
-# pnpm is already installed globally from an earlier step
 RUN pnpm run build
 
 # Production image, copy all the files and run next
@@ -43,6 +51,7 @@ ENV NODE_ENV production
 # Uncomment the following line in case you want to disable telemetry during runtime.
 # ENV NEXT_TELEMETRY_DISABLED 1
 
+# User setup for the final running application
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
