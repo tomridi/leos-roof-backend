@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  payload:
+    image: node:18-alpine
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/home/node/app
+      - node_modules:/home/node/app/node_modules
+    working_dir: /home/node/app/
+    command: sh -c "corepack enable && corepack prepare pnpm@latest --activate && pnpm install && pnpm dev"
+    env_file:
+      - .env
+    depends_on: # <--- CHANGE THIS depends_on SYNTAX
+      postgres:
+        condition: service_healthy # <--- NEW: Wait for postgres to be healthy
+
+  postgres:
+    restart: always
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${DB_NAME:-payload_db}
+      POSTGRES_USER: ${DB_USER:-payload_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-payload_password}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck: # <--- ADD THIS HEALTHCHECK BLOCK
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 30s # Give it some time to start initially
+
+volumes:
+  pgdata:
+  node_modules:

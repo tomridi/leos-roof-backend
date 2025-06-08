@@ -1,0 +1,17 @@
+node_modules/
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.next/ # Exclude local build artifacts from being copied, as Dockerfile builds its own
+.vscode/
+media/ # If you don't want local media files bundled into the image
+README.md
+.git/
+.gitignore
+
+# ... other exclusions ...
+package-lock.json
+yarn.lock
+# ... other exclusions ...
