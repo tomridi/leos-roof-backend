@@ -1,11 +1,11 @@
 // hooks/globalRebuildHook.ts
-import { triggerRebuild } from '../utils/triggerRebuild';
-import { CollectionAfterChangeHook, CollectionAfterDeleteHook } from 'payload/types';
+import { triggerRebuild } from '../utils/triggerRebuild'
+import type { CollectionAfterChangeHook, CollectionAfterDeleteHook } from 'payload'
 
 export const rebuildAfterChange: CollectionAfterChangeHook = async () => {
-  await triggerRebuild();
-};
+  await triggerRebuild()
+}
 
 export const rebuildAfterDelete: CollectionAfterDeleteHook = async () => {
-  await triggerRebuild();
-};
+  await triggerRebuild()
+}
