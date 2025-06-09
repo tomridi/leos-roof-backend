@@ -42,34 +42,6 @@ export default buildConfig({
     migrationDir: './src/migrations', // Make sure this is correctly set
     prodMigrations: migrations, // <-- THIS IS KEY FOR PRODUCTION
   }),
-  webhooks: {
-    // Add a webhook here for your Astro frontend
-    // Make sure to add this block if it doesn't exist
-    // You can replace process.env.ASTRO_FRONTEND_BUILD_HOOK with your actual URL or another env var
-    'afterChange': async ({ req, doc, collection, global }) => {
-        if (collection && ['posts', 'pages', 'services'].includes(collection.slug)) { // Adjust slugs for your relevant collections
-            try {
-                const response = await fetch(process.env.ASTRO_FRONTEND_BUILD_HOOK, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    // You can send a body if Render's webhook expects it, though often not needed
-                    body: JSON.stringify({ event: 'content_updated', collection: collection.slug, id: doc.id })
-                });
-                if (response.ok) {
-                    console.log(`Render build hook triggered successfully for ${collection.slug} update.`);
-                } else {
-                    console.error(`Failed to trigger Render build hook for ${collection.slug} update. Status: ${response.status}`);
-                    const errorText = await response.text();
-                    console.error(`Render build hook error response: ${errorText}`);
-                }
-            } catch (error) {
-                console.error('Error sending Render build hook:', error);
-            }
-        }
-    },
-  },
   sharp,
   plugins: [
     payloadCloudPlugin(),
