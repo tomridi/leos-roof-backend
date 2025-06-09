@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import { rebuildAfterChange, rebuildAfterDelete } from '../hooks/globalRebuildHook';
 
 export const Locations: CollectionConfig = {
   slug: 'locations',
