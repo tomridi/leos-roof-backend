@@ -1,5 +1,5 @@
-import type { CollectionConfig } from 'payload';
-import { rebuildAfterChange, rebuildAfterDelete } from '../hooks/globalRebuildHook';
+import type { CollectionConfig } from 'payload'
+import { rebuildAfterChange, rebuildAfterDelete } from '../hooks/globalRebuildHook'
 
 const Galleries: CollectionConfig = {
   slug: 'galleries',
@@ -16,7 +16,7 @@ const Galleries: CollectionConfig = {
       required: true,
       localized: true,
     },
- {
+    {
       name: 'slug', // Good for generating clean URLs if needed (e.g., /galleries/roofing-projects)
       type: 'text',
       unique: true,
@@ -27,9 +27,12 @@ const Galleries: CollectionConfig = {
         beforeValidate: [
           ({ value, data }) => {
             if (!value && data?.title) {
-              return data.title.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
+              return data.title
+                .toLowerCase()
+                .replace(/\s+/g, '-')
+                .replace(/[^\w-]+/g, '')
             }
-            return value;
+            return value
           },
         ],
       },
@@ -58,6 +61,6 @@ const Galleries: CollectionConfig = {
       ],
     },
   ],
-};
+}
 
-export default Galleries;
+export default Galleries
