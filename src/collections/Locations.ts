@@ -1,5 +1,5 @@
 import type { CollectionConfig } from 'payload'
-import { rebuildAfterChange, rebuildAfterDelete } from '../hooks/globalRebuildHook';
+import { rebuildAfterChange, rebuildAfterDelete } from '../hooks/globalRebuildHook'
 
 export const Locations: CollectionConfig = {
   slug: 'locations',
@@ -21,6 +21,10 @@ export const Locations: CollectionConfig = {
       type: 'upload',
       relationTo: 'media',
       required: true,
+      admin: {
+        position: 'sidebar',
+        description: 'This image will be used as the thumbnail for the location page.',
+      },
     },
     {
       name: 'introMain',
@@ -57,6 +61,16 @@ export const Locations: CollectionConfig = {
       type: 'upload',
       relationTo: 'media',
       required: true,
+    },
+    {
+      name: 'order',
+      label: 'Display Order',
+      type: 'number',
+      admin: {
+        position: 'sidebar',
+        description: 'Enter a number to control the display order. Lower numbers appear first.',
+      },
+      defaultValue: 1,
     },
     {
       name: 'gallery', // This will be the name of your gallery field

@@ -234,6 +234,9 @@ export interface Service {
     };
     [k: string]: unknown;
   };
+  /**
+   * This image will be used as the cover for the service page.
+   */
   coverImage: number | Media;
   content02?: {
     root: {
@@ -252,6 +255,10 @@ export interface Service {
   } | null;
   callToActionHighlighted?: string | null;
   callToAction?: string | null;
+  /**
+   * Enter a number to control the display order. Lower numbers appear first.
+   */
+  order?: number | null;
   gallery?:
     | {
         image: number | Media;
@@ -272,6 +279,10 @@ export interface Team {
   position: string;
   description: string;
   image: number | Media;
+  /**
+   * Enter a number to control the display order. Lower numbers appear first.
+   */
+  order?: number | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -282,6 +293,9 @@ export interface Team {
 export interface Location {
   id: number;
   title: string;
+  /**
+   * This image will be used as the thumbnail for the location page.
+   */
   thumbnail: number | Media;
   introMain?: string | null;
   intro?: {
@@ -345,6 +359,10 @@ export interface Location {
     [k: string]: unknown;
   };
   coverImage: number | Media;
+  /**
+   * Enter a number to control the display order. Lower numbers appear first.
+   */
+  order?: number | null;
   gallery?:
     | {
         image: number | Media;
@@ -553,6 +571,7 @@ export interface ServicesSelect<T extends boolean = true> {
   content02?: T;
   callToActionHighlighted?: T;
   callToAction?: T;
+  order?: T;
   gallery?:
     | T
     | {
@@ -572,6 +591,7 @@ export interface TeamSelect<T extends boolean = true> {
   position?: T;
   description?: T;
   image?: T;
+  order?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -588,6 +608,7 @@ export interface LocationsSelect<T extends boolean = true> {
   do?: T;
   dont?: T;
   coverImage?: T;
+  order?: T;
   gallery?:
     | T
     | {

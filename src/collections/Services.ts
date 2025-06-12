@@ -52,6 +52,10 @@ export const Services: CollectionConfig = {
       type: 'upload',
       relationTo: 'media',
       required: true,
+      admin: {
+        position: 'sidebar',
+        description: 'This image will be used as the cover for the service page.',
+      },
     },
     {
       name: 'content02',
@@ -70,6 +74,16 @@ export const Services: CollectionConfig = {
       label: 'Call to Action',
       type: 'textarea',
       required: false,
+    },
+    {
+      name: 'order',
+      label: 'Display Order',
+      type: 'number',
+      admin: {
+        position: 'sidebar',
+        description: 'Enter a number to control the display order. Lower numbers appear first.',
+      },
+      defaultValue: 1,
     },
     {
       name: 'gallery', // This will be the name of your gallery field
