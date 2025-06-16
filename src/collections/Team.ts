@@ -33,7 +33,7 @@ export const Team: CollectionConfig = {
       relationTo: 'media',
       required: true,
     },
-    {
+    /*{
       name: 'order',
       label: 'Display Order',
       type: 'number',
@@ -42,6 +42,6 @@ export const Team: CollectionConfig = {
         description: 'Enter a number to control the display order. Lower numbers appear first.',
       },
       defaultValue: 1,
-    },
+    },*/
   ],
 }

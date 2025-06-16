@@ -62,7 +62,7 @@ export const Locations: CollectionConfig = {
       relationTo: 'media',
       required: true,
     },
-    {
+    /*{
       name: 'order',
       label: 'Display Order',
       type: 'number',
@@ -71,7 +71,7 @@ export const Locations: CollectionConfig = {
         description: 'Enter a number to control the display order. Lower numbers appear first.',
       },
       defaultValue: 1,
-    },
+    },*/
     {
       name: 'gallery', // This will be the name of your gallery field
       type: 'array',
