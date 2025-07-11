@@ -3,7 +3,9 @@ import path from 'path'
 
 const staticUploadDir = process.env.PAYLOAD_UPLOAD_DIR
   ? process.env.PAYLOAD_UPLOAD_DIR
-  : path.resolve(__dirname, 'media') // Default to a relative path locally
+  : path.resolve(__dirname, 'media') // Default to a relative path locally\\
+
+console.log('Payload CMS Static Upload Directory:', staticUploadDir) // <--- ADD THIS LOG
 
 export const Media: CollectionConfig = {
   slug: 'media',

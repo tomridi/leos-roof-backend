@@ -278,7 +278,7 @@ export interface Team {
   title: string;
   position: string;
   description: string;
-  image: number | Media;
+  image?: (number | null) | Media;
   /**
    * Enter a number to control the display order. Lower numbers appear first.
    */
