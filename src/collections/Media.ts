@@ -1,16 +1,20 @@
 import type { CollectionConfig } from 'payload'
 import path from 'path'
 
+// Determine the local upload directory based on the environment
+const localUploadDir = path.resolve(process.cwd(), 'media') // Use process.cwd() for local development
+// This will resolve to <your_project_root>/media
+
 const staticUploadDir = process.env.PAYLOAD_UPLOAD_DIR
   ? process.env.PAYLOAD_UPLOAD_DIR
-  : path.resolve(__dirname, 'media') // Default to a relative path locally\\
+  : localUploadDir // Fallback to the correctly resolved local path
 
 console.log('Payload CMS Static Upload Directory:', staticUploadDir) // <--- ADD THIS LOG
 
 export const Media: CollectionConfig = {
   slug: 'media',
   upload: {
-    staticDir: 'media', // Folder where your uploaded files will be stored
+    staticDir: staticUploadDir, // Folder where your uploaded files will be stored
     imageSizes: [
       {
         name: 'thumbnail',
