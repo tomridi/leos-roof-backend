@@ -1,4 +1,9 @@
 import type { CollectionConfig } from 'payload'
+import path from 'path'
+
+const staticUploadDir = process.env.PAYLOAD_UPLOAD_DIR
+  ? process.env.PAYLOAD_UPLOAD_DIR
+  : path.resolve(__dirname, 'media') // Default to a relative path locally
 
 export const Media: CollectionConfig = {
   slug: 'media',
