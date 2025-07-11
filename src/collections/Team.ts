@@ -31,7 +31,7 @@ export const Team: CollectionConfig = {
       label: 'Picture',
       type: 'upload',
       relationTo: 'media',
-      required: true,
+      required: false,
     },
     {
       name: 'order',
