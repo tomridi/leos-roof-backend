@@ -1,5 +1,5 @@
 import type { CollectionConfig } from 'payload'
-import { rebuildAfterChange, rebuildAfterDelete } from '../hooks/globalRebuildHook'
+//import { rebuildAfterChange, rebuildAfterDelete } from '../hooks/globalRebuildHook'
 
 const Galleries: CollectionConfig = {
   slug: 'galleries',

@@ -1,5 +1,5 @@
 import type { CollectionConfig } from 'payload'
-import { rebuildAfterChange, rebuildAfterDelete } from '../hooks/globalRebuildHook'
+//import { rebuildAfterChange, rebuildAfterDelete } from '../hooks/globalRebuildHook'
 
 export const Services: CollectionConfig = {
   slug: 'services',
@@ -75,7 +75,7 @@ export const Services: CollectionConfig = {
       type: 'textarea',
       required: false,
     },
-    /*{
+    {
       name: 'order',
       label: 'Display Order',
       type: 'number',
@@ -84,7 +84,7 @@ export const Services: CollectionConfig = {
         description: 'Enter a number to control the display order. Lower numbers appear first.',
       },
       defaultValue: 1,
-    },*/
+    },
     {
       name: 'gallery', // This will be the name of your gallery field
       type: 'array',
