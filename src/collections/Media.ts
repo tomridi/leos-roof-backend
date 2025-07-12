@@ -2,8 +2,7 @@ import type { CollectionConfig } from 'payload'
 import path from 'path'
 
 // Determine the local upload directory based on the environment
-const localUploadDir = path.resolve(process.cwd(), 'media') // Use process.cwd() for local development
-// This will resolve to <your_project_root>/media
+const localUploadDir = path.resolve(process.cwd(), 'media')
 
 const staticUploadDir = process.env.PAYLOAD_UPLOAD_DIR
   ? process.env.PAYLOAD_UPLOAD_DIR
