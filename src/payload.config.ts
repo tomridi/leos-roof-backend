@@ -48,8 +48,15 @@ export default buildConfig({
     // storage-adapter-placeholder
   ],
   cors: [
-    'http://localhost:4321', // Allow requests from your Astro frontend
-    // You might also add other origins if your frontend runs on different URLs
-    // e.g., 'http://127.0.0.1:4321', if Astro sometimes uses that
-  ],
+    process.env.FRONTEND_URL, // This is `string | undefined`
+    'http://localhost:3000',
+    'http://localhost:4321',
+  ].filter((url): url is string => typeof url === 'string' && url.length > 0),
+
+  csrf: [
+    process.env.FRONTEND_URL, // This is `string | undefined`
+    'http://localhost:3000',
+    'http://localhost:4321',
+    process.env.PAYLOAD_PUBLIC_SERVER_URL,
+  ].filter((url): url is string => typeof url === 'string' && url.length > 0),
 })
